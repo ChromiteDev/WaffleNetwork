@@ -1,0 +1,179 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-waffle: var(--waffle);
+  --color-waffle-deep: var(--waffle-deep);
+  --color-gold: var(--gold);
+  --color-charcoal: var(--charcoal);
+  --color-cream: var(--cream);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-glow: 0 20px 80px -20px color-mix(in oklab, var(--waffle) 55%, transparent);
+  --shadow-elegant: 0 30px 60px -30px color-mix(in oklab, var(--charcoal) 40%, transparent);
+  --shadow-soft: 0 8px 24px -12px color-mix(in oklab, var(--charcoal) 25%, transparent);
+}
+
+:root {
+  --radius: 0.9rem;
+
+  /* Waffle brand */
+  --waffle: oklch(0.85 0.17 88);       /* warm waffle yellow */
+  --waffle-deep: oklch(0.78 0.19 76);  /* honey */
+  --gold: oklch(0.72 0.16 70);         /* gold */
+  --charcoal: oklch(0.22 0.02 80);
+  --cream: oklch(0.985 0.015 90);
+
+  --background: oklch(0.995 0.006 90);
+  --foreground: oklch(0.18 0.02 80);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 80);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 80);
+
+  --primary: oklch(0.82 0.18 82);
+  --primary-foreground: oklch(0.2 0.03 80);
+
+  --secondary: oklch(0.96 0.02 85);
+  --secondary-foreground: oklch(0.22 0.02 80);
+
+  --muted: oklch(0.965 0.015 85);
+  --muted-foreground: oklch(0.5 0.02 80);
+
+  --accent: oklch(0.94 0.06 85);
+  --accent-foreground: oklch(0.22 0.03 80);
+
+  --destructive: oklch(0.62 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.92 0.015 85);
+  --input: oklch(0.92 0.015 85);
+  --ring: oklch(0.82 0.18 82);
+}
+
+.dark {
+  --background: oklch(0.15 0.015 80);
+  --foreground: oklch(0.985 0.005 85);
+  --card: oklch(0.19 0.02 80);
+  --card-foreground: oklch(0.985 0.005 85);
+  --popover: oklch(0.19 0.02 80);
+  --popover-foreground: oklch(0.985 0.005 85);
+  --primary: oklch(0.85 0.19 85);
+  --primary-foreground: oklch(0.18 0.02 80);
+  --secondary: oklch(0.24 0.02 80);
+  --secondary-foreground: oklch(0.985 0.005 85);
+  --muted: oklch(0.24 0.02 80);
+  --muted-foreground: oklch(0.72 0.02 85);
+  --accent: oklch(0.26 0.03 85);
+  --accent-foreground: oklch(0.985 0.005 85);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.85 0.19 85);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+/* Utility variants */
+@utility glass {
+  background: color-mix(in oklab, white 65%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--waffle) 22%, transparent);
+}
+@utility glass-dark {
+  background: color-mix(in oklab, var(--charcoal) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--waffle) 25%, transparent);
+}
+@utility text-gradient-gold {
+  background: linear-gradient(135deg, var(--waffle-deep), var(--waffle) 45%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-hero-radial {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, color-mix(in oklab, var(--waffle) 30%, transparent), transparent 60%),
+    radial-gradient(900px 500px at 90% 20%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%),
+    linear-gradient(180deg, var(--cream), var(--background));
+}
+@utility waffle-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--waffle) 22%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--waffle) 22%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+@utility shine {
+  position: relative;
+  overflow: hidden;
+}
+@utility btn-glow {
+  box-shadow: 0 12px 40px -10px color-mix(in oklab, var(--waffle) 60%, transparent);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-12px) }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-120%) }
+  100% { transform: translateX(120%) }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--waffle) 55%, transparent) }
+  50% { box-shadow: 0 0 0 14px color-mix(in oklab, var(--waffle) 0%, transparent) }
+}
+
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-shimmer::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(110deg, transparent 30%, color-mix(in oklab, white 55%, transparent) 50%, transparent 70%);
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+.animate-pulse-glow { animation: pulse-glow 2.6s ease-out infinite; }
